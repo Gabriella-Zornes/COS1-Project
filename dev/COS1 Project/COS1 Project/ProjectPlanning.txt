@@ -1,0 +1,46 @@
+*IDEA*
+
+-text based adventure game 
+-event driven 
+-abandoned city/building vibe; "where would you go?" "what would you do?" 
+
+CLASSES:
+
+Event:
+-store event text
+-store choices
+-store next event
+-method to display event
+provide a method to get the next event based on player choice
+
+EventMagager:
+-load/create events
+-store them in a vector
+-keep track of current event
+-run event loop
+-move to the event based on user input
+
+
+
+Game:
+-show main menu
+-start game
+-hold player stats and inventory
+
+EVENT IDEAS:
+
+-The building you walk into doesnt seem fully abandoned, the door seems opened with some kind of force,
+theres lights on, and youre hearing things
+
+-you hear a noise and follow it but it doesnt seem to lead to anything; dead ends
+
+-you find a sign posted by an old bus driving warning you of something but it seem awful vague 
+
+-the building your exploring has flickering lights, weak floors and strage smells, be careful where you walk.
+
+
+
+
+
+
+

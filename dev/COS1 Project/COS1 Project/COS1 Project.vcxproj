@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="COS1 Project.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="ProjectPlanning.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
