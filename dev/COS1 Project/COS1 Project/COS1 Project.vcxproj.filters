@@ -18,8 +18,28 @@
     <ClCompile Include="COS1 Project.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ProjectPlanning.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
