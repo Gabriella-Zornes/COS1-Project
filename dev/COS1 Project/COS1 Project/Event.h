@@ -14,9 +14,9 @@ class Event
 public:
 	Event(int id,  const std::string& text); //text is const because the story text shouldnt be changed and passed by ref so it isnt copied
 
-	void AddChoice(const std::string& choiceText, int nextEventid); 
+	void AddChoice(const std::string& choiceText, int nextEventid); //will add choices for user to create next event 
 	void Display() const;
-	int GetNextEvent(int ChoiceIndex) const;
+	int GetNextEvent(int ChoiceIndex) const; 
 
 };
 
