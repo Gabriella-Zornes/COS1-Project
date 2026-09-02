@@ -15,6 +15,10 @@ void Game::ShowMenu()
 
 }
 
+Game::Game()
+{
+}
+
 void Game::Run()
 {
 	int option = 0;
