@@ -1,5 +1,6 @@
 #pragma once
 #include "Event.h"
+#include <vector>
 
 class EventManager
 {
@@ -10,6 +11,7 @@ private:
 
 public:
 	EventManager();
+
 	void LoadEvents();
 	void Run();
 

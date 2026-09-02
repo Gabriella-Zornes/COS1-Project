@@ -1,11 +1,9 @@
+
+
+#include <iostream>
 #include "Game.h"
 #include "EventManager.h"
-#include <iostream>
 
-Game::Game()
-{
-21
-}
 void Game::ShowMenu()
 {
 	std::cout << "============================= \n";
