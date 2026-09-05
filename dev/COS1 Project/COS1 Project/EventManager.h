@@ -6,7 +6,7 @@ class EventManager
 {
 
 private:
-	std::vector<Event> events;
+	
 	int currentEvent;
 
 public:
