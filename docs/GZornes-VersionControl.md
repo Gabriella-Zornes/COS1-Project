@@ -38,8 +38,11 @@ List the correct Terminal commands to do the actions listed below. Replace **CMD
 **2. Using Terminal...**
 
 **Folder Drop:** Try typing "cd" followed by a space, and then drag a folder into terminal and press return. Test this out and describe your results below.
+cd [[README]]
 
-[ Describe Results Here ]
+
+
+[After adding the README folder after that it created a link to that folder ]
 
 ## Topic: Version Control & Git
 
@@ -47,20 +50,20 @@ Version control, also known as revision control, records changes to a file or se
 
 **1. There are three types of version control.**
 
-[ Name & describe the three types of version control here.]
+local, centralized, and distributed are the three types of version control. local stores files right on your computer, centralized stores in one server that multiple people connect to, and distributed is everyone on the project has their own copy of the repo on their computer.
 
 **2. Using Terminal, there are also essential Git commands to know.**
 
 List the correct Git commands to do the actions listed below in Terminal. Replace CMD with the correct command and keep or enhance the brief description.
 
-- [ CMD ]: Clone a repository
-- [ CMD ]: Set-up a global user name
-- [ CMD ]: Set-up a global email address (to match my GitHub account email)
-- [ CMD ]: Shows the current state of your directory and staging area
-- [ CMD ]: Add modified files to the next commit
-- [ CMD ]: Make a commit with a new message
-- [ CMD ]: Show my commit history
-- [ CMD ]: Show Git's help screen
+- git clone <repository-url>: Clone a repository
+-  git config --global user.name "your name" : Set-up a global user name
+-  git config --global user.email 'Email" : Set-up a global email address (to match my GitHub account email)
+-  git status: Shows the current state of your directory and staging area
+-  git add  . : Add modified files to the next commit
+- git commit -m "your message" : Make a commit with a new message
+- git log: Show my commit history
+- git help: Show Git's help screen
 
 **3. Connecting to GitHub using Terminal.**
 HTTPS is the the correct way to connect to GitHub in this course. Describe how you connect to GitHub from Terminal using this protocol. What steps do you take?
