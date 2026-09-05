@@ -13,7 +13,7 @@ class Event
 public:
 	Event(); 
 
-	void AddChoice(const std::string& choiceText, int nextEventid);
+	void AddChoice(const std::string& choiceText);
 	void DisplayChoices() const;
 	int GetChoiceCount() const; 
 

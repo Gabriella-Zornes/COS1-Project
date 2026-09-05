@@ -11,8 +11,6 @@ private:
 
 public:
 	EventManager();
-
-	void LoadEvents();
 	void Run();
 
 
