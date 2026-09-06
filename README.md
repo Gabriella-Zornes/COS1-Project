@@ -27,7 +27,7 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 1
 
-Replace this paragraph with your stand up for this week. Use the prompts above to summarize your most recent milestone activity and work.
+Now, at the end of the week, I am happy with where I am in my project so far. I did at one point have to back track and go back through my classes to figure out how I wanted to go about creating my events and how I wanted them to flow throughout the story...my first thought was "I need a vector why not create an event vector to hold all of the possible events I wanted." I thought it made sense at the time but, that didn't exactly work out. When I went to create the first "event" in the story, I wasn't sure how to create the options and connect them together. So I went back through with a switch in mind for my events, and that made things move a lot move smoother. I now have finished my main menu, which i may add more option to later, and my arrival/beginning of story "event" done.
 
 ### Week 2
 
