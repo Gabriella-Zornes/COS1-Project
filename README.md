@@ -2,29 +2,12 @@
 
 This repository will be used to keep track of research and development conducted in this class. Follow the instructions below to get started.
 cos
-### Getting Started
-
-**1.** Review the [About](./docs/01_about/README.md) README and all of the links it provides.
-
-**2.** Review the documentation and [Getting Started](./docs/02_getting_started/README.md) steps in this repository's docs folder.
-
-**3.** Attend the first Live Lecture to see a live setup demo. If you are unable to attend, make sure to watch the archive.
-
-### Next Steps...
-
-After completing the above steps, feel free to begin updating this readme where indicated below. Remember to update this document each week to receive proper credit for the weekly Milestone assignment.
-
-<br>
-
-> ❗️ &nbsp; Now that you have read to this point, go ahead and delete this sentence and everything above it.
-
-<br>
-
+<b
 # Project & Portfolio 1
 
-### Student First & Last Name
+### Gabriella & Zornes
 
-Hello my name is [enter name]. I am a student from [where are you from?]. The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
+Hello my name is Gabriella. I am a student from Tamarac, FL. The purpose of this repository is to practice development using version control. This work will help me begin to build a portfolio of skills and accomplishment that can be shared in the future.
 
 <br>
 
@@ -44,7 +27,7 @@ Each week I will summarize my milestone activity and progress by writing a stand
 
 ### Week 1
 
-Replace this paragraph with your stand up for this week. Use the prompts above to summarize your most recent milestone activity and work.
+Now, at the end of the week, I am happy with where I am in my project so far. I did at one point have to back track and go back through my classes to figure out how I wanted to go about creating my events and how I wanted them to flow throughout the story...my first thought was "I need a vector why not create an event vector to hold all of the possible events I wanted." I thought it made sense at the time but, that didn't exactly work out. When I went to create the first "event" in the story, I wasn't sure how to create the options and connect them together. So I went back through with a switch in mind for my events, and that made things move a lot move smoother. I now have finished my main menu, which i may add more option to later, and my arrival/beginning of story "event" done.
 
 ### Week 2
 
