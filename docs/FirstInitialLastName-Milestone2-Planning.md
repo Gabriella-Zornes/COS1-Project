@@ -8,7 +8,7 @@
 →   The Abandoned District
   
 **What does your program currently do? (1–3 sentences)**   
-→ Currently, my program 
+→ Currently, my program works and print correctly. I only have the arrival switch case and I have added my first event case, which is what the user will do next. Then, I give the user 3 options to chose from. Now, I am working on the connecting events corresponding to said options 
 
 ---
 ## 🔍 Current Progress Check  

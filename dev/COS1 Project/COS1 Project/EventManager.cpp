@@ -23,7 +23,7 @@ void EventManager::Run()
 			std::cout <<    "=========================================== \n";
 
 			std::cout << " You are the last one left on the bus. The bus drops you off at the edge of the old industrial district. \n";
-			std::cout << " A tall, overgrown building looma ahead, silent and forgotten. \n";
+			std::cout << " A tall, overgrown building looming ahead, silent and forgotten. \n";
 			std::cout << " The air feels heavier than it should... \n""\n";
 
 			std::cout << "Do you: \n";
@@ -60,7 +60,6 @@ void EventManager::Run()
 
 			if (choice1 == 1) currentEvent = 3;
 			else if (choice1 == 2) currentEvent = 4;
-			else if (choice1 == 3) currentEvent = 5;
 			else currentEvent = 0;
 
 			break;
@@ -71,9 +70,9 @@ void EventManager::Run()
 			std::cout << "You suddenly hear metal clanking in the distance \n\n ";
 
 			std::cout << "Do you: \n";
-			e.AddChoice("follow the clanking");
+			e.AddChoice("Follow the clanking");
 			e.AddChoice("Return to the building");
-			e.AddChoice("turn the other way");
+			e.AddChoice("Turn the other way");
 
 			e.DisplayChoices();
 
@@ -81,20 +80,17 @@ void EventManager::Run()
 			std::cout << "Enter what you would do next (1-3): ";
 			std::cin >> choice2;
 
-			if (choice2 == 1) currentEvent = 6;
+			if (choice2 == 1) currentEvent = 5;
 			else if (choice2 == 2) currentEvent = 1;
 			else running = false;
-
-
-
-
-
-
-
-
+			break;
+		default:
+			running = false;
+			break;	
 
 		}
 	}
+	std::cout << "You leave the area. The mystery remains unsolved. \n";
 }
 
 

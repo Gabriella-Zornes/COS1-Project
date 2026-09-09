@@ -8,6 +8,7 @@ class EventManager
 private:
 	
 	int currentEvent;
+	std::vector<std::string> Inventory;
 
 public:
 	EventManager();

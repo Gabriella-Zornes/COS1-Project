@@ -5,10 +5,6 @@
 
 class Event
 {
-	private:
-		
-		std::vector<std::string> choices;
-
 
 public:
 	Event(); 
