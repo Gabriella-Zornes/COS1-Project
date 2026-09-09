@@ -24,7 +24,7 @@ void Game::Run()
 	int option = 0;
 
 	ShowMenu();
-	std::cout << "Enter option: ";
+	std::cout << "Enter menu option: ";
 	std::cin >> option;
 
 	if (option == 1)
