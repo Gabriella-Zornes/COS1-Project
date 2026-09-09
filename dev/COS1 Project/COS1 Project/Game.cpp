@@ -30,7 +30,6 @@ void Game::Run()
 	if (option == 1)
 	{
 		EventManager manager;
-		manager.LoadEvents();
 		manager.Run();
 	}
 	else
