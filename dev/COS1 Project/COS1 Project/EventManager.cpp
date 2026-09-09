@@ -48,7 +48,7 @@ void EventManager::Run()
 			std::cout << " Though, you notice some of the chains are hanging loose. Looks like the doors have been forced opened... \n\n";
 			
 			std::cout << "Do you: \n";
-			e.AddChoice("Open the door");
+			e.AddChoice("Open the door and go in");
 			e.AddChoice("inspect the door farther");
 			e.AddChoice("take a step back");
 			
@@ -88,6 +88,63 @@ void EventManager::Run()
 			running = false;
 			break;	
 
+		case 3:
+			
+			std::cout << "\n You step inside the lobby. Dust hangs in the air. \n";
+			std::cout << "A faint emergency light glows down the hall. \n";
+			std::cout << "On the floor, you notice a small metal object. \n\n";
+
+			std::cout << "Do you: \n";
+			e.AddChoice("Pick up the object");
+			e.AddChoice("Go farther into the hallway");
+			e.AddChoice("Leave the building");
+
+			e.DisplayChoices();
+
+			int choice3;
+			std::cout << "Enter what you would do next (1-3): ";
+			std::cin >> choice3;
+
+			if (choice3 == 1)
+			{
+				Inventory.push_back("Small Metal Key");
+				std::cout << "\n You picked up: Small Matel Key\n";
+				currentEvent = 6;
+			}
+			else if (choice3 == 2)
+			{
+				currentEvent = 6; //hallway
+			}
+			else
+			{
+				currentEvent = 0;
+			}
+			
+			break;
+
+		case 4:
+			//stuck for what do/put for inspecting the door
+			break;
+
+		case 5:
+			std::cout << "You walk down the street towards the clanking \n";
+			std::cout << "You approach the the building that the metal sound is coming from and suddenly...\n";
+			std::cout << "the sounds stops.\n";
+			std::cout << "Your heart starts racing and the air starts to really feel thick. \n";
+
+			std::cout << "Do you: \n";
+			e.AddChoice("");
+			e.AddChoice("");
+			e.AddChoice("");
+
+			e.DisplayChoices();
+
+			int choice3;
+			std::cout << "Enter what you would do next (1-3): ";
+			std::cin >> choice3;
+			break;
+		case 6:
+			break;
 		}
 	}
 	std::cout << "You leave the area. The mystery remains unsolved. \n";
