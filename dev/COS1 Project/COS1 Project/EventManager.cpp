@@ -139,9 +139,9 @@ void EventManager::Run()
 
 			e.DisplayChoices();
 
-			int choice3;
+			int choice4;
 			std::cout << "Enter what you would do next (1-3): ";
-			std::cin >> choice3;
+			std::cin >> choice4;
 			break;
 		case 6:
 			break;
