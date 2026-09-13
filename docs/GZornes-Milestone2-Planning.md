@@ -88,33 +88,33 @@ List the features you plan to add or improve this week.
 How will you make your program easier to use this week?  
   
 - Clearer prompts:   
-→   
+→   i will make sure the program clearly tells the user what options they have
   
 - Better error handling:   
-→   
+→   i will check for invalid user input
   
 - Improved menu/navigation:   
-→   
+→   i will organize the menu so the options are easy to read and allow the user to choose what they want to do next without getting confused.
   
 ---
 ## ⚠️ Potential Challenges  
   
 **What do you think will be the hardest part this week?**   
-→   
+→   really getting the hang USER readability 
   
 **What is your plan if you get stuck?**   
-→   
+→   Honestly I will take a break because realistically if I'm stuck i have too much going on and too many things I'm thinking about so taking a quick break can help me reset. though, other than a break I can do research on other text based games to see their way of creating new options for the user but ones that may have already occurred 
   
 ---
   
 ## 📈 Level Up Goal  
   
 **What skill are you focusing on improving this week?**   
-→   
+→   I am focusing on improving the readability for the user...
   
 **What will you do to improve it?**   
 (e.g., tutorial, practice, debugging, office hours)   
-→   
+→   I want to create an easier way for the user to go back a step or connect past events that will tunnel back to a new event but for example not show the arrival sequence when you want to go back outside to the front of the building.
   
 ---
 ## 🗓️ Task Breakdown (GitHub Issues Planning)  
