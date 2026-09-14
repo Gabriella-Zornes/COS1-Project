@@ -15,6 +15,7 @@ void EventManager::Run()
 	{
 		Event e;
 
+		
 		switch (currentEvent)
 		{
 		case 0:
@@ -60,13 +61,13 @@ void EventManager::Run()
 		}
 		case 1:
 		{
-			std::cout << "\n You approach the building...you notice that the doors are steel and covered in chains and covered with grime. \n";
-			std::cout << " Though, you notice some of the chains are hanging loose. Looks like the doors have been forced opened... \n\n";
+			std::cout << "\n You approach the building...you notice that the front doors are steel and covered in chains and grime. \n";
+			std::cout << " Though, you notice a door in which some of the chains are hanging loose. Looks like those doors have been forced opened... \n\n";
 
 			std::cout << "Do you: \n";
 			Event e;
-			e.AddChoice("Open the door and go in");
-			e.AddChoice("inspect the door farther");
+			e.AddChoice("go through the open doors");
+			e.AddChoice("inspect the front doors");
 			e.AddChoice("take a step back");
 
 			e.DisplayChoices();
@@ -91,7 +92,7 @@ void EventManager::Run()
 
 			if (choice1 == 1) currentEvent = 3;
 			else if (choice1 == 2) currentEvent = 4;
-			else currentEvent = 0;
+			else currentEvent = 1;
 
 			break;
 		}
@@ -163,26 +164,37 @@ void EventManager::Run()
 			}
 			else
 			{
-				currentEvent = 0;
+				currentEvent = 1;
 			}
 
 			break;
 		}
 		case 4:
-			//stuck for what do/put for inspecting the door
-			break;
-
-		case 5:
 		{
-			std::cout << "You walk down the street towards the clanking \n";
-			std::cout << "You approach the the building that the metal sound is coming from and suddenly...\n";
-			std::cout << "the sounds stops.\n";
-			std::cout << "Your heart starts racing and the air starts to really feel thick. \n";
+			std::cout << " The doors seem to be secured pretty tightly...almost as if it wasnt someone inside, but something outside keeping it in... \n";
+			std::cout << "Even so, you tug on the chains, it won't budge. \n";
+			std::cout << "It must be locked. \n";
 
-			std::cout << "Do you: \n";
-			e.AddChoice("");
-			e.AddChoice("");
-			e.AddChoice("");
+			bool hasKey = false;
+			for (const std::string& item : Inventory)
+			{
+				if (item == "Small Metal Key")
+				{
+					hasKey = true;
+				}
+			}
+
+			if (hasKey)
+			{
+				std::cout << "You remember the key from the lobby...maybe it'll work. \n\n";
+				e.AddChoice("Use the key");
+			}
+			else
+			{
+				std::cout << "\nYou need to find something to unlock it. \n";
+
+			}
+			e.AddChoice("Return to enterance");
 
 			e.DisplayChoices();
 
@@ -203,7 +215,50 @@ void EventManager::Run()
 					std::cout << "Invalid option. Please try again.\n";
 				}
 			}
-			//havent added the connection to case blocking yet for 3 and 4 yet...
+			if (hasKey && choice4 == 1)
+			{
+				std::cout << "\nYou Unlock the chain. The doors creak open. \n";
+				currentEvent = 7;
+			}
+			else
+			{
+				currentEvent = 1;
+			}
+
+			break;
+		} 
+		case 5:
+		{
+			std::cout << "You walk down the street towards the clanking \n";
+			std::cout << "You approach the the building that the metal sound is coming from and suddenly...\n";
+			std::cout << "the sounds stops.\n";
+			std::cout << "Your heart starts racing and the air starts to really feel thick. \n";
+
+			std::cout << "Do you: \n";
+			e.AddChoice("Continue exploring");
+			e.AddChoice("Return to building");
+			
+
+			e.DisplayChoices();
+
+			int choice5 = 0;
+			bool valid = false;
+
+			while (!valid)
+			{
+				std::cout << "Enter choice: ";
+				std::cin >> choice5;
+
+				if (choice5 >= 1 && choice5 <= e.GetChoiceCount())
+				{
+					valid = true;
+				}
+				else
+				{
+					std::cout << "Invalid option. Please try again.\n";
+				}
+			}
+			
 			break;
 		}
 		case 6:
