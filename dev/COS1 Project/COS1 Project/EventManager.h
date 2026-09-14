@@ -6,13 +6,12 @@ class EventManager
 {
 
 private:
-	std::vector<Event> events;
+	
 	int currentEvent;
+	std::vector<std::string> Inventory;
 
 public:
 	EventManager();
-
-	void LoadEvents();
 	void Run();
 
 
