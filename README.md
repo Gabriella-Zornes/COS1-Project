@@ -38,7 +38,7 @@ Now, at the end of the week, I am happy with where I am in my project so far. I 
 
 ### Week 2
 
-My next stand up will go here...
+Now at the end of the week, I have incorporated the inventory vector and have created an event using that vector. I am now planning other items to add to the user inventory and ways that could expand the opportunities within the game but I am trying to figure out a more intriguing aspect to the game weather or not i want the occasional surprise fight or just keep it a mystery based game that the user moves through to find said mystery. I am still working on creating a different way to create the options when moving back from a new option.
 
 ### Week 3
 
