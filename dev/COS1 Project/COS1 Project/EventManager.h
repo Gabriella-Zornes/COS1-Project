@@ -16,7 +16,10 @@ public:
 	void Run();
 	int GetValidatedChoice(int maxChoice);
 	void SaveGame(const std::string& fileName);
-	bool LoadGame(const std::string& fileName)
+	bool LoadGame(const std::string& fileName);
+	void saveAndstay();
+
+
 
 };
 

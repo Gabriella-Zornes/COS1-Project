@@ -17,7 +17,7 @@ int EventManager::GetValidatedChoice(int maxChoice)
 
 	while (true)
 	{
-		std::cout << "Enter what you would like to do next (1-3): ";
+		std::cout << "Enter what you would like to do next: ";
 		std::getline(std::cin, input);
 
 		try
@@ -67,15 +67,24 @@ void EventManager::Run()
 
 			e.AddChoice("Approach the building");
 			e.AddChoice("Look around the street");
-			e.AddChoice("Leave the area"); //should leave the area be an option? do i want to force the player farther? 
+			e.AddChoice("Leave the area\n"); //should leave the area be an option? do i want to force the player farther? 
+
+			e.AddChoice("Save Game");
 
 			e.DisplayChoices();
 
 			int choice0 = GetValidatedChoice(e.GetChoiceCount());
 
 
-			if (choice0 == 1) currentEvent = 1;
-			else if (choice0 == 2) currentEvent = 2;
+			if (choice0 == 1)
+				currentEvent = 1;
+			else if (choice0 == 2) 
+				currentEvent = 2;
+			else if (choice0 == 3)
+			{
+				saveAndstay();
+				currentEvent = 0;
+			}
 			else running = false;
 			break;
 		}
@@ -97,6 +106,11 @@ void EventManager::Run()
 
 			if (choice1 == 1) currentEvent = 3;
 			else if (choice1 == 2) currentEvent = 4;
+			else if (choice1 == 3)
+			{
+				saveAndstay();
+				currentEvent = 0;
+			}
 			else currentEvent = 1;
 
 			break;
@@ -134,6 +148,7 @@ void EventManager::Run()
 			std::cout << "Do you: \n";
 			e.AddChoice("Pick up the object");
 			e.AddChoice("Go farther into the hallway");
+			e.AddChoice("Save Game");
 			e.AddChoice("Leave the building");
 
 			e.DisplayChoices();
@@ -150,6 +165,12 @@ void EventManager::Run()
 			else if (choice3 == 2)
 			{
 				currentEvent = 6; //hallway
+			}
+			else if (choice3 == 3)
+
+			{
+				saveAndstay();
+				currentEvent = 3;
 			}
 			else
 			{
@@ -269,7 +290,9 @@ void EventManager::Run()
 
 			e.AddChoice("Read the notebook");
 			e.AddChoice("Search the room");
-			e.AddChoice("Return to the entrance");
+			e.AddChoice("Return to the entrance\n");
+
+			e.AddChoice("Save Game");
 
 			e.DisplayChoices();
 
@@ -288,6 +311,11 @@ void EventManager::Run()
 				Inventory.push_back("Old Notebook");
 				std::cout << "\nYou picked up: Old Notebook\n";
 				currentEvent = 7;
+			}
+			else if (choice7 == 4)
+			{
+				saveAndstay();
+				currentEvent = 0;
 			}
 			else
 			{
@@ -378,3 +406,16 @@ void EventManager::SaveGame(const std::string& filename)
 	std::cout << "Game saved successfully.\n";
 }
 
+bool EventManager::LoadGame(const std::string& filename)
+{
+	std::ifstream in(filename);
+
+
+}
+
+void EventManager::saveAndstay()
+{
+	SaveGame("Game.txt");
+	std::cout << "\n Game successfully saved. \n";
+
+}
