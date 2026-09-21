@@ -60,7 +60,7 @@ void EventManager::Run()
 			std::cout << " The air feels heavier than it should... \n""\n";
 
 			std::cout << "Do you: \n";
-		
+
 			e.AddChoice("Approach the building");
 			e.AddChoice("Look around the street");
 			e.AddChoice("Leave the area"); //should leave the area be an option? do i want to force the player farther? 
@@ -81,7 +81,7 @@ void EventManager::Run()
 			std::cout << " Though, you notice a door in which some of the chains are hanging loose. Looks like those doors have been forced opened... \n\n";
 
 			std::cout << "Do you: \n";
-		
+
 			e.AddChoice("go through the open doors");
 			e.AddChoice("inspect the front doors");
 			e.AddChoice("take a step back");
@@ -104,7 +104,7 @@ void EventManager::Run()
 			std::cout << "You suddenly hear metal clanking in the distance \n\n ";
 
 			std::cout << "Do you: \n";
-		
+
 			e.AddChoice("Follow the clanking");
 			e.AddChoice("Return to the building");
 			e.AddChoice("Turn the other way");
@@ -152,8 +152,11 @@ void EventManager::Run()
 				currentEvent = 1;
 			}
 
-			break;
+
 		}
+		break;
+
+
 		case 4: //key unlock squence
 		{
 			std::cout << " The doors seem to be secured pretty tightly...almost as if it wasnt someone inside, but something outside keeping it in... \n";
@@ -188,9 +191,11 @@ void EventManager::Run()
 			{
 				currentEvent = 1;
 			}
-	
-		break;
+
+			
 		}
+		break;
+
 		case 5: //clanking in the street
 		{
 			std::cout << "You walk down the street towards the clanking \n";
@@ -211,8 +216,9 @@ void EventManager::Run()
 			else if (choice5 == 2) currentEvent = 8;
 			else running = false;
 
-			break;
+			
 		}
+		break;
 		case 6: //continue down the hall
 		{
 			std::cout << "\nYou continue down the hallway. \n";
@@ -230,24 +236,25 @@ void EventManager::Run()
 			int choice6 = GetValidatedChoice(e.GetChoiceCount());
 
 
-				if (choice6 == 1)
-				{
-					Inventory.push_back("Battery");
-					std::cout << "\n You picked up: Battery\n";
-					currentEvent = 6;
-				}
-				else if (choice6 == 2)
-				{
-					currentEvent = 9;
-				}
-				else
-				{
-					currentEvent = 3;
-				}
+			if (choice6 == 1)
+			{
+				Inventory.push_back("Battery");
+				std::cout << "\n You picked up: Battery\n";
+				currentEvent = 6;
+			}
+			else if (choice6 == 2)
+			{
+				currentEvent = 9;
+			}
+			else
+			{
+				currentEvent = 3;
+			}
 
-				break;
 			
+
 		}
+		break;
 
 		case 7: //whats behind locked door
 		{
@@ -255,7 +262,7 @@ void EventManager::Run()
 			std::cout << "The room beyond is small and cluttered with old research equipment.\n";
 			std::cout << "A notebook covered in dust lies open on a desk.\n\n";
 
-			
+
 			e.AddChoice("Read the notebook");
 			e.AddChoice("Search the room");
 			e.AddChoice("Return to the entrance");
@@ -264,7 +271,7 @@ void EventManager::Run()
 
 			int choice7 = GetValidatedChoice(e.GetChoiceCount());
 
-			
+
 
 			if (choice7 == 1) //read the notebook
 			{
@@ -283,15 +290,28 @@ void EventManager::Run()
 				currentEvent = 1; // back outside
 			}
 
-			break;
+			
 		}
-		case 8 :
+		break;
+		case 8:
+		{
 			std::cout << "\nYou search the area where the sound came from.\n";
 			std::cout << "Fresh foot prints trail off into a dark alley way.\n";
 
+			e.AddChoice("Follow the footsteps");
+			e.AddChoice("Return to the street");
+			e.AddChoice("Leave the area");
 
+			e.DisplayChoices();
 
+			int choice8 = GetValidatedChoice(e.GetChoiceCount());
 
+			if (choice8 == 1) currentEvent = 10;
+			else if (choice8 == 2) currentEvent = 2;
+			else running = false;
+		}
+		break;
+			
 		default:
 			std::cout << "You leave the area. The mystery remains unsolved. \n";
 			break;
