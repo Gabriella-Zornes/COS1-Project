@@ -7,6 +7,37 @@ EventManager::EventManager()
 	currentEvent = 0;
 }
 
+int EventManager::GetValidatedChoice(int maxChoice)
+{
+	std::string input;
+	int choice = 0;
+
+	while (true)
+	{
+		std::cout << "Enter what you would like to do next (1-3): ";
+		std::getline(std::cin, input);
+
+		try
+		{
+			choice = std::stoi(input);
+
+			if (choice >= 1 && choice <= maxChoice)
+			{
+				return choice;
+			}
+			else
+			{
+				std::cout << "Invalid Option. Please try again. \n";
+			}
+		}
+		catch (...)
+
+		{
+			std::cout << "Invalid input. Number only. \n";
+		}
+	}
+}
+
 void EventManager::Run()
 {
 	bool running = true;
@@ -15,10 +46,10 @@ void EventManager::Run()
 	{
 		Event e;
 
-		
+
 		switch (currentEvent)
 		{
-		case 0:
+		case 0: //arrival squence 
 		{
 			std::cout << "\n =========================================== \n";
 			std::cout << "    Welcome to the Abanondoned District \n";
@@ -29,66 +60,36 @@ void EventManager::Run()
 			std::cout << " The air feels heavier than it should... \n""\n";
 
 			std::cout << "Do you: \n";
-			Event e;
+		
 			e.AddChoice("Approach the building");
 			e.AddChoice("Look around the street");
 			e.AddChoice("Leave the area"); //should leave the area be an option? do i want to force the player farther? 
 
 			e.DisplayChoices();
 
-			int choice0 = 0;
-			bool valid = false;
+			int choice0 = GetValidatedChoice(e.GetChoiceCount());
 
-			while (!valid)
-			{
-				std::cout << "Enter choice: ";
-				std::cin >> choice0;
-
-				if (choice0 >= 1 && choice0 <= e.GetChoiceCount())
-				{
-					valid = true;
-				}
-				else
-				{
-					std::cout << "Invalid option. Please try again.\n";
-				}
-			}
 
 			if (choice0 == 1) currentEvent = 1;
 			else if (choice0 == 2) currentEvent = 2;
 			else running = false;
 			break;
 		}
-		case 1:
+		case 1: //approach the building
 		{
 			std::cout << "\n You approach the building...you notice that the front doors are steel and covered in chains and grime. \n";
 			std::cout << " Though, you notice a door in which some of the chains are hanging loose. Looks like those doors have been forced opened... \n\n";
 
 			std::cout << "Do you: \n";
-			Event e;
+		
 			e.AddChoice("go through the open doors");
 			e.AddChoice("inspect the front doors");
 			e.AddChoice("take a step back");
 
 			e.DisplayChoices();
 
-			int choice1 = 0;
-			bool valid = false;
+			int choice1 = GetValidatedChoice(e.GetChoiceCount());
 
-			while (!valid)
-			{
-				std::cout << "Enter choice 1-3: ";
-				std::cin >> choice1;
-
-				if (choice1 >= 1 && choice1 <= e.GetChoiceCount())
-				{
-					valid = true;
-				}
-				else
-				{
-					std::cout << "Invalid option. Please try again.\n";
-				}
-			}
 
 			if (choice1 == 1) currentEvent = 3;
 			else if (choice1 == 2) currentEvent = 4;
@@ -96,37 +97,22 @@ void EventManager::Run()
 
 			break;
 		}
-		case 2:
+		case 2: //choosing to look around the street
 		{
 			std::cout << "\n You look around at the street you're on...there's no one around. \n";
 			std::cout << "The street is silent, street lights flickering even though the power seems like it should be off by now. \n";
 			std::cout << "You suddenly hear metal clanking in the distance \n\n ";
 
 			std::cout << "Do you: \n";
-			Event e;
+		
 			e.AddChoice("Follow the clanking");
 			e.AddChoice("Return to the building");
 			e.AddChoice("Turn the other way");
 
 			e.DisplayChoices();
 
-			int choice2 = 0;
-			bool valid = false;
+			int choice2 = GetValidatedChoice(e.GetChoiceCount());
 
-			while (!valid)
-			{
-				std::cout << "Enter choice: ";
-				std::cin >> choice2;
-
-				if (choice2 >= 1 && choice2 <= e.GetChoiceCount())
-				{
-					valid = true;
-				}
-				else
-				{
-					std::cout << "Invalid option. Please try again.\n";
-				}
-			}
 
 			if (choice2 == 1) currentEvent = 5;
 			else if (choice2 == 2) currentEvent = 1;
@@ -134,7 +120,7 @@ void EventManager::Run()
 			break;
 		}
 
-		case 3:
+		case 3: //going through already opened door
 		{
 
 			std::cout << "\n You step inside the lobby. Dust hangs in the air. \n";
@@ -148,9 +134,8 @@ void EventManager::Run()
 
 			e.DisplayChoices();
 
-			int choice3;
-			std::cout << "Enter what you would do next (1-3): ";
-			std::cin >> choice3;
+			int choice3 = GetValidatedChoice(e.GetChoiceCount());
+
 
 			if (choice3 == 1)
 			{
@@ -169,7 +154,7 @@ void EventManager::Run()
 
 			break;
 		}
-		case 4:
+		case 4: //key unlock squence
 		{
 			std::cout << " The doors seem to be secured pretty tightly...almost as if it wasnt someone inside, but something outside keeping it in... \n";
 			std::cout << "Even so, you tug on the chains, it won't budge. \n";
@@ -179,55 +164,34 @@ void EventManager::Run()
 			for (const std::string& item : Inventory)
 			{
 				if (item == "Small Metal Key")
-				{
 					hasKey = true;
-				}
 			}
 
 			if (hasKey)
 			{
-				std::cout << "You remember the key from the lobby...maybe it'll work. \n\n";
+				std::cout << "You notice the lock matches the key you found.\n\n";
 				e.AddChoice("Use the key");
 			}
-			else
-			{
-				std::cout << "\nYou need to find something to unlock it. \n";
 
-			}
-			e.AddChoice("Return to enterance");
+			e.AddChoice("Return to the entrance");
 
 			e.DisplayChoices();
 
-			int choice4 = 0;
-			bool valid = false;
+			int choice4 = GetValidatedChoice(e.GetChoiceCount());
 
-			while (!valid)
-			{
-				std::cout << "Enter choice: ";
-				std::cin >> choice4;
-
-				if (choice4 >= 1 && choice4 <= e.GetChoiceCount())
-				{
-					valid = true;
-				}
-				else
-				{
-					std::cout << "Invalid option. Please try again.\n";
-				}
-			}
 			if (hasKey && choice4 == 1)
 			{
-				std::cout << "\nYou Unlock the chain. The doors creak open. \n";
+				std::cout << "\nYou unlock the chain. The door creaks open.\n";
 				currentEvent = 7;
 			}
 			else
 			{
 				currentEvent = 1;
 			}
-
-			break;
-		} 
-		case 5:
+	
+		break;
+		}
+		case 5: //clanking in the street
 		{
 			std::cout << "You walk down the street towards the clanking \n";
 			std::cout << "You approach the the building that the metal sound is coming from and suddenly...\n";
@@ -237,41 +201,107 @@ void EventManager::Run()
 			std::cout << "Do you: \n";
 			e.AddChoice("Continue exploring");
 			e.AddChoice("Return to building");
-			
+
 
 			e.DisplayChoices();
 
-			int choice5 = 0;
-			bool valid = false;
+			int choice5 = GetValidatedChoice(e.GetChoiceCount());
 
-			while (!valid)
-			{
-				std::cout << "Enter choice: ";
-				std::cin >> choice5;
+			if (choice5 == 1) currentEvent = 1;
+			else if (choice5 == 2) currentEvent = 8;
+			else running = false;
 
-				if (choice5 >= 1 && choice5 <= e.GetChoiceCount())
+			break;
+		}
+		case 6: //continue down the hall
+		{
+			std::cout << "\nYou continue down the hallway. \n";
+			std::cout << "The glowing exit sign flickers, creating shadows along the walls. \n";
+			std::cout << "A broken vending machine hums quietly.  \n";
+			std::cout << "On the floor, in a pile of dust, you notice a small battery. \n\n";
+
+			std::cout << "Do you: \n";
+			e.AddChoice("Pick up the battery");
+			e.AddChoice("Continue into the hallway");
+			e.AddChoice("Return to lobby");
+
+			e.DisplayChoices();
+
+			int choice6 = GetValidatedChoice(e.GetChoiceCount());
+
+
+				if (choice6 == 1)
 				{
-					valid = true;
+					Inventory.push_back("Battery");
+					std::cout << "\n You picked up: Battery\n";
+					currentEvent = 6;
+				}
+				else if (choice6 == 2)
+				{
+					currentEvent = 9;
 				}
 				else
 				{
-					std::cout << "Invalid option. Please try again.\n";
+					currentEvent = 3;
 				}
-			}
+
+				break;
 			
+		}
+
+		case 7: //whats behind locked door
+		{
+			std::cout << "\nYou step through the now unlocked door.\n";
+			std::cout << "The room beyond is small and cluttered with old research equipment.\n";
+			std::cout << "A notebook covered in dust lies open on a desk.\n\n";
+
+			
+			e.AddChoice("Read the notebook");
+			e.AddChoice("Search the room");
+			e.AddChoice("Return to the entrance");
+
+			e.DisplayChoices();
+
+			int choice7 = GetValidatedChoice(e.GetChoiceCount());
+
+			
+
+			if (choice7 == 1) //read the notebook
+			{
+				std::cout << "\nThe notebook mentions strange experiments conducted in the basement.\n";
+				std::cout << "Most pages are torn out.\n";
+				currentEvent = 7; // stay here
+			}
+			else if (choice7 == 2)
+			{
+				Inventory.push_back("Old Notebook");
+				std::cout << "\nYou picked up: Old Notebook\n";
+				currentEvent = 7;
+			}
+			else
+			{
+				currentEvent = 1; // back outside
+			}
+
 			break;
 		}
-		case 6:
-			
-			break;
+		case 8 :
+			std::cout << "\nYou search the area where the sound came from.\n";
+			std::cout << "Fresh foot prints trail off into a dark alley way.\n";
+
+
+
 
 		default:
 			std::cout << "You leave the area. The mystery remains unsolved. \n";
 			break;
+		
+
 		}
+
+
 	}
 	
-	
-}
 
+}
 
