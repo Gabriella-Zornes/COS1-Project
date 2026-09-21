@@ -2,6 +2,7 @@
 #include "Event.h"
 #include <vector>
 
+
 class EventManager
 {
 
@@ -14,6 +15,8 @@ public:
 	EventManager();
 	void Run();
 	int GetValidatedChoice(int maxChoice);
+	void SaveGame(const std::string& fileName);
+	bool LoadGame(const std::string& fileName)
 
 };
 

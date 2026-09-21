@@ -1,5 +1,8 @@
 #include "EventManager.h"
 #include <iostream>
+#include <fstream>
+
+
 
 
 EventManager::EventManager()
@@ -35,6 +38,7 @@ int EventManager::GetValidatedChoice(int maxChoice)
 		{
 			std::cout << "Invalid input. Number only. \n";
 		}
+	
 	}
 }
 
@@ -311,7 +315,30 @@ void EventManager::Run()
 			else running = false;
 		}
 		break;
+		
+		case 9:
+		{
+
+		}
+			break;
+
+		case 10:
+		{
 			
+		}
+		break;
+		case 11:
+		{
+
+		}
+			break;
+
+		case 12:
+		{
+
+		}
+		break;
+
 		default:
 			std::cout << "You leave the area. The mystery remains unsolved. \n";
 			break;
@@ -323,5 +350,31 @@ void EventManager::Run()
 	}
 	
 
+}
+
+void EventManager::SaveGame(const std::string& filename)
+{
+	std::ofstream out(filename);
+
+	if (!out.is_open())
+	{
+		std::cout << "Error saving game.\n";
+		return;
+	}
+
+	out << currentEvent << "\n";
+
+	// Write inventory size
+	out << Inventory.size() << "\n";
+
+	// Write each item
+	for (const std::string& item : Inventory)
+	{
+		out << item << "\n";
+	}
+
+	out.close();
+
+	std::cout << "Game saved successfully.\n";
 }
 
