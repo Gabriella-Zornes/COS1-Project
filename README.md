@@ -42,7 +42,7 @@ Now at the end of the week, I have incorporated the inventory vector and have cr
 
 ### Week 3
 
-Stay tuned, this stand up is coming soon...
+Now, I finally have the input validation in its own function to call instead of copying the same block in each case, this now will prompt the user to enter a number 1-3 if the user was to input a character using a try-catch. I am still working on wrapping everything up. I really would like to have different ending depending on the choices of the user but I think, for now, I am going to wrap everything up leading to one ending just to make sure I can submit this with a working end.
 
 ### Week 4
 

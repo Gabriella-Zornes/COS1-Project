@@ -4,12 +4,16 @@
 #include "Game.h"
 #include "EventManager.h"
 
-void Game::ShowMenu()
+void Game::Title()
 {
 	std::cout << "============================= \n";
 	std::cout << "    THE ABANDONED DISTRICT    \n";
 	std::cout << "============================= \n";
 
+}
+void Game::ShowMenu()
+{
+	
 	std::cout << "1. Start Game \n";
 	std::cout << "2. Exit Game \n";
 
@@ -21,21 +25,30 @@ Game::Game()
 
 void Game::Run()
 {
+	Title();
 	int option = 0;
+	bool valid = false;
 
-	ShowMenu();
-	std::cout << "Enter menu option: ";
-	std::cin >> option;
-
-	if (option == 1)
+	while (!valid)
 	{
-		EventManager manager;
-		manager.Run();
-	}
-	else
-	{
-		std::cout << "Exiting game...";
-	}
+		ShowMenu();
+		std::cout << "Enter menu option: ";
+		std::cin >> option;
 
+		if (option == 1)
+		{
+			valid = true;
+			EventManager manager;
+			manager.Run();
+		}
+		else if (option == 2)
+		{
+			std::cout << "Exiting game...";
+		}
+		else
+		{
+			std::cout << "Invalid option. Please try again. \n\n";
+		}
+	}
 
 }

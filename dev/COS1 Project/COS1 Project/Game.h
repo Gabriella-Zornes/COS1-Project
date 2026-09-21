@@ -5,5 +5,6 @@ public:
 	Game();
 	void Run();
 	void ShowMenu();
+	void Title();
 };
 

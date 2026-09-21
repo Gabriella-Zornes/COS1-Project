@@ -13,7 +13,7 @@ private:
 public:
 	EventManager();
 	void Run();
-
+	int GetValidatedChoice(int maxChoice)
 
 };
 
