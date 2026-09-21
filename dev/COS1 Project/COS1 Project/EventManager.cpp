@@ -69,7 +69,7 @@ void EventManager::Run()
 			e.AddChoice("Look around the street");
 			e.AddChoice("Leave the area\n"); //should leave the area be an option? do i want to force the player farther? 
 
-			e.AddChoice("Save Game");
+			
 
 			e.DisplayChoices();
 
@@ -80,11 +80,6 @@ void EventManager::Run()
 				currentEvent = 1;
 			else if (choice0 == 2) 
 				currentEvent = 2;
-			else if (choice0 == 3)
-			{
-				saveAndstay();
-				currentEvent = 0;
-			}
 			else running = false;
 			break;
 		}
@@ -410,8 +405,65 @@ bool EventManager::LoadGame(const std::string& filename)
 {
 	std::ifstream in(filename);
 
+	if (!in.is_open())
+	{
+		std::cout << "Save file not found..";
+		return false;
+	}
+	std::string line;
 
+	if (!std::getline(in, line))
+	{
+		std::cout << "Save file corrupted.\n";
+		return false;
+	}
+
+	try
+	{
+		currentEvent = std::stoi(line);
+	}
+	catch (...)
+	{
+		std::cout << "Save file corrupted.\n";
+		return false;
+	}
+
+	// Read inventory count
+	if (!std::getline(in, line))
+	{
+		std::cout << "Save file corrupted.\n";
+		return false;
+	}
+
+	int count = 0;
+	try
+	{
+		count = std::stoi(line);
+	}
+	catch (...)
+	{
+		std::cout << "Save file corrupted.\n";
+		return false;
+	}
+
+	// Read each inventory item
+	for (int i = 0; i < count; i++)
+	{
+		if (!std::getline(in, line))
+		{
+			std::cout << "Save file corrupted.\n";
+			return false;
+		}
+
+		Inventory.push_back(line);
+	}
+
+	std::cout << "Game loaded successfully.\n";
+	return true;
 }
+
+
+
 
 void EventManager::saveAndstay()
 {
@@ -419,3 +471,4 @@ void EventManager::saveAndstay()
 	std::cout << "\n Game successfully saved. \n";
 
 }
+

@@ -15,7 +15,8 @@ void Game::ShowMenu()
 {
 	
 	std::cout << "1. Start Game \n";
-	std::cout << "2. Exit Game \n";
+    std::cout << "2. Load Game\n";
+	std::cout << "3. Exit Game \n";
 
 }
 
@@ -52,14 +53,26 @@ void Game::Run()
                 manager.Run();
                 break;
             }
-            else if (option == 2)
+            else if (option == 2) // Resume Game
+            {
+                EventManager manager;
+
+                if (manager.LoadGame("save.txt"))
+                {
+                    manager.Run();   // jump straight into saved event
+                    break;
+                }
+                else
+                {
+                    std::cout << "No saved game found.\n\n";
+                    continue;
+                }
+                break;
+            }
+            else if (option == 3)
             {
                 std::cout << "Exiting game...\n";
                 break;
-            }
-            else
-            {
-                std::cout << "Invalid option. Please try again.\n\n";
             }
       }
     
