@@ -391,8 +391,43 @@ void EventManager::Run()
 
 		case 10:
 		{
+			std::cout << "\nYou desecend the stairs into the basement. \n";
+			std::cout << "Cold air wraps around you like a shroud. \n";
+			std::cout << "Footprints lead deeper into the darkness. \n \n";
+			Event e;
+
+			e.AddChoice("Follow the footprints");
+			e.AddChoice("Search the basement");
+			e.AddChoice("Retreat upstairs");
 			
+
+			e.DisplayChoices();
+
+			int choice10 = GetValidatedChoice(e.GetChoiceCount());
+
+			if (choice10 == 1)
+			{
+				currentEvent = 11;
+			}
+			else if (choice10 == 2)
+			{
+				std::cout << "\nYou find a torn ID badge.\n";
+				Inventory.push_back("Torn ID Badge");
+				currentEvent = 10;
+			}
+			else if (choice10 == 3)
+			{
+				currentEvent = 9;
+			}
+			else
+			{
+				SaveGame("save.txt");
+				currentEvent = 10;
+			}
 		}
+		
+
+
 		break;
 		case 11:
 		{
