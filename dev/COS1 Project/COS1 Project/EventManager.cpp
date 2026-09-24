@@ -431,6 +431,46 @@ void EventManager::Run()
 		break;
 		case 11:
 		{
+			std::cout << "\n You follow the footprints to a dimly light storage room. \n";
+			std::cout << " A figure sits against the wall, breathing heavily. \n";
+			std::cout << "They look up at you with fear and relief. \n\n";
+
+			std::cout << "\Please...Help me,\ the person whispers. \n";
+			std::cout << "Their ID badge matches the torn one you found \n\n";
+
+			Event e;
+
+			e.AddChoice("Help the trapped researcher");
+			e.AddChoice("Ask what happened here");
+			e.AddChoice("Leave them and escape");
+			e.AddChoice("Save Game");
+
+			e.DisplayChoices();
+
+			int choice11 = GetValidatedChoice(e.GetChoiceCount());
+
+			if (choice11 == 1)
+			{
+				currentEvent = 12; // Hero ending
+			}
+			else if (choice11 == 2)
+			{
+				std::cout << "\n\"The experiments... something went wrong...\"\n";
+				std::cout << "Their voice trembles.\n";
+				currentEvent = 11;
+			}
+			else if (choice11 == 3)
+			{
+				currentEvent = 12; // Tragic ending
+			}
+			else
+			{
+				SaveGame("save.txt");
+				currentEvent = 11;
+			}
+
+
+
 
 		}
 			break;
