@@ -101,11 +101,6 @@ void EventManager::Run()
 
 			if (choice1 == 1) currentEvent = 3;
 			else if (choice1 == 2) currentEvent = 4;
-			else if (choice1 == 3)
-			{
-				saveAndstay();
-				currentEvent = 0;
-			}
 			else currentEvent = 1;
 
 			break;
@@ -116,7 +111,7 @@ void EventManager::Run()
 			std::cout << "The street is silent, street lights flickering even though the power seems like it should be off by now. \n";
 			std::cout << "You suddenly hear metal clanking in the distance \n\n ";
 
-			std::cout << "Do you: \n";
+			std::cout << "Do you: ";
 
 			e.AddChoice("Follow the clanking");
 			e.AddChoice("Return to the building");
@@ -172,9 +167,9 @@ void EventManager::Run()
 
 		case 4: //key unlock squence
 		{
-			std::cout << " The doors seem to be secured pretty tightly...almost as if it wasnt someone inside, but something outside keeping it in... \n";
-			std::cout << "Even so, you tug on the chains, it won't budge. \n";
-			std::cout << "It must be locked. \n";
+			std::cout << "\n The doors seem to be secured pretty tightly...almost as if it wasnt someone inside, but something outside keeping it in... \n";
+			std::cout << "Even so, you tug on the chains, it won't budge.\n \n";
+			std::cout << "It must be locked.\n \n";
 
 			bool hasKey = false;
 			for (const std::string& item : Inventory)
@@ -211,12 +206,12 @@ void EventManager::Run()
 
 		case 5: //clanking in the street
 		{
-			std::cout << "You walk down the street towards the clanking \n";
+			std::cout << "\nYou walk down the street towards the clanking \n";
 			std::cout << "You approach the the building that the metal sound is coming from and suddenly...\n";
 			std::cout << "the sounds stops.\n";
-			std::cout << "Your heart starts racing and the air starts to really feel thick. \n";
+			std::cout << "Your heart starts racing and the air starts to really feel thick.\n \n";
 
-			std::cout << "Do you: \n";
+			std::cout << "Do you: ";
 			e.AddChoice("Continue exploring");
 			e.AddChoice("Return to building");
 			e.AddChoice("Save Game");
@@ -231,7 +226,7 @@ void EventManager::Run()
 			else if (choice5 == 3)
 			{
 				saveAndstay();
-				currentEvent = 3;
+				currentEvent = 5;
 			}
 			else running = false;
 
@@ -245,7 +240,7 @@ void EventManager::Run()
 			std::cout << "A broken vending machine hums quietly.  \n";
 			std::cout << "On the floor, in a pile of dust, you notice a small battery. \n\n";
 
-			std::cout << "Do you: \n";
+			std::cout << "Do you: ";
 			e.AddChoice("Pick up the battery");
 			e.AddChoice("Continue into the hallway");
 			e.AddChoice("Return to lobby");
@@ -297,7 +292,7 @@ void EventManager::Run()
 			if (choice7 == 1) //read the notebook
 			{
 				std::cout << "\nThe notebook mentions strange experiments conducted in the basement.\n";
-				std::cout << "Most pages are torn out.\n";
+				std::cout << "Most pages are torn out.\n\n";
 				currentEvent = 7; // stay here
 			}
 			else if (choice7 == 2)
@@ -309,7 +304,7 @@ void EventManager::Run()
 			else if (choice7 == 4)
 			{
 				saveAndstay();
-				currentEvent = 0;
+				currentEvent = 7;
 			}
 			else
 			{
@@ -377,12 +372,12 @@ void EventManager::Run()
 				}
 				else if ((hasBattery && choice9 == 3) || (!hasBattery && choice9 == 2))
 				{
-					currentEvent = 6;
+					SaveGame("save.txt");
+					currentEvent = 9;
 				}
 				else
 				{
-					SaveGame("save.txt");
-					currentEvent = 9;
+					running = false;
 				}
 			
 		}
@@ -469,15 +464,36 @@ void EventManager::Run()
 				currentEvent = 11;
 			}
 
-
-
-
 		}
 			break;
 
 		case 12:
 		{
+			bool helped = false;
 
+			for (const std::string& item : Inventory)
+			{
+				if (item == "Torn ID Badge")
+					helped = true;
+			}
+
+			if (helped)
+			{
+				std::cout << "You help the researcher to their feet.\n";
+				std::cout << "Together, you escape the Holloway Building.\n";
+				std::cout << "The truth about the experiments will finally be known.\n\n";
+				std::cout << "           HERO ENDING\n";
+			}
+			else
+			{
+				std::cout << "You leave the basement alone.\n";
+				std::cout << "The researcher’s cries echo behind you as you flee.\n";
+				std::cout << "The mystery of the Holloway Building remains unsolved.\n\n";
+				std::cout << "           TRAGIC ENDING\n";
+			}
+
+			std::cout << "\nThank you for playing.\n";
+			running = false;
 		}
 		break;
 
