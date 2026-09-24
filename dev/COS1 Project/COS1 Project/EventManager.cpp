@@ -340,8 +340,53 @@ void EventManager::Run()
 		
 		case 9:
 		{
+			std::cout << "\nYou reach the end of the hallway. \n";
+			std::cout << "A heavy metal door blocks your path. \n";
+			std::cout << "A faded sign reads: BASEMENT ACCESS. \n \n";
 
+			bool hasBattery = false;
+			for (const std::string& item : Inventory)
+			{
+				if (item == "Battery")
+					hasBattery = true;
+			}
+			Event e;
+
+			if (hasBattery)
+			{
+				e.AddChoice("Use the battery to power your flashlight");
+			}
+				e.AddChoice("Return to the hallway");
+				e.AddChoice("Save Game");
+
+				e.DisplayChoices();
+
+				int choice9 = GetValidatedChoice(e.GetChoiceCount());
+
+				if (hasBattery && choice9 == 1)
+				{
+					std::cout << "\nYou insert the battery. The flashlight flickers to life.\n";
+					Inventory.push_back("Working Flashlight");
+					currentEvent = 9;
+				}
+				else if ((hasBattery && choice9 == 2) || (!hasBattery && choice9 == 1))
+				{
+					std::cout << "\nYou push hard against the door.\n";
+					std::cout << "The damaged lock snaps and the door swings open.\n";
+					currentEvent = 10;
+				}
+				else if ((hasBattery && choice9 == 3) || (!hasBattery && choice9 == 2))
+				{
+					currentEvent = 6;
+				}
+				else
+				{
+					SaveGame("save.txt");
+					currentEvent = 9;
+				}
+			
 		}
+
 			break;
 
 		case 10:
