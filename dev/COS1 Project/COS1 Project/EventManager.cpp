@@ -143,7 +143,6 @@ void EventManager::Run()
 			std::cout << "Do you: \n";
 			e.AddChoice("Pick up the object");
 			e.AddChoice("Go farther into the hallway");
-			e.AddChoice("Save Game");
 			e.AddChoice("Leave the building");
 
 			e.DisplayChoices();
@@ -155,17 +154,11 @@ void EventManager::Run()
 			{
 				Inventory.push_back("Small Metal Key");
 				std::cout << "\n You picked up: Small Matel Key\n";
-				currentEvent = 6;
+				currentEvent = 3;
 			}
 			else if (choice3 == 2)
 			{
 				currentEvent = 6; //hallway
-			}
-			else if (choice3 == 3)
-
-			{
-				saveAndstay();
-				currentEvent = 3;
 			}
 			else
 			{
@@ -226,6 +219,7 @@ void EventManager::Run()
 			std::cout << "Do you: \n";
 			e.AddChoice("Continue exploring");
 			e.AddChoice("Return to building");
+			e.AddChoice("Save Game");
 
 
 			e.DisplayChoices();
@@ -234,6 +228,11 @@ void EventManager::Run()
 
 			if (choice5 == 1) currentEvent = 1;
 			else if (choice5 == 2) currentEvent = 8;
+			else if (choice5 == 3)
+			{
+				saveAndstay();
+				currentEvent = 3;
+			}
 			else running = false;
 
 			
@@ -410,9 +409,11 @@ bool EventManager::LoadGame(const std::string& filename)
 		std::cout << "Save file not found..";
 		return false;
 	}
+	Inventory.clear();
+
 	std::string line;
 
-	if (!std::getline(in, line))
+	if (!std::getline(in, line)) 
 	{
 		std::cout << "Save file corrupted.\n";
 		return false;
