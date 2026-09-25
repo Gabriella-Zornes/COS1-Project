@@ -1,5 +1,8 @@
 #include "EventManager.h"
 #include <iostream>
+#include <fstream>
+
+
 
 
 EventManager::EventManager()
@@ -14,7 +17,7 @@ int EventManager::GetValidatedChoice(int maxChoice)
 
 	while (true)
 	{
-		std::cout << "Enter what you would like to do next (1-3): ";
+		std::cout << "Enter what you would like to do next: ";
 		std::getline(std::cin, input);
 
 		try
@@ -35,6 +38,7 @@ int EventManager::GetValidatedChoice(int maxChoice)
 		{
 			std::cout << "Invalid input. Number only. \n";
 		}
+	
 	}
 }
 
@@ -63,15 +67,19 @@ void EventManager::Run()
 
 			e.AddChoice("Approach the building");
 			e.AddChoice("Look around the street");
-			e.AddChoice("Leave the area"); //should leave the area be an option? do i want to force the player farther? 
+			e.AddChoice("Leave the area\n"); //should leave the area be an option? do i want to force the player farther? 
+
+			
 
 			e.DisplayChoices();
 
 			int choice0 = GetValidatedChoice(e.GetChoiceCount());
 
 
-			if (choice0 == 1) currentEvent = 1;
-			else if (choice0 == 2) currentEvent = 2;
+			if (choice0 == 1)
+				currentEvent = 1;
+			else if (choice0 == 2) 
+				currentEvent = 2;
 			else running = false;
 			break;
 		}
@@ -103,7 +111,7 @@ void EventManager::Run()
 			std::cout << "The street is silent, street lights flickering even though the power seems like it should be off by now. \n";
 			std::cout << "You suddenly hear metal clanking in the distance \n\n ";
 
-			std::cout << "Do you: \n";
+			std::cout << "Do you: ";
 
 			e.AddChoice("Follow the clanking");
 			e.AddChoice("Return to the building");
@@ -139,9 +147,24 @@ void EventManager::Run()
 
 			if (choice3 == 1)
 			{
-				Inventory.push_back("Small Metal Key");
-				std::cout << "\n You picked up: Small Matel Key\n";
-				currentEvent = 6;
+				bool hasKey = false;
+
+				for (const std::string& item : Inventory)
+				{
+					if (item == "Small Metal Key")
+					{
+						hasKey = true;
+					}
+				}
+				if (!hasKey)
+				{
+					Inventory.push_back("Small Metal Key");
+					std::cout << "\nYou picked up a Small Metal Key\n";
+				}
+				else
+				{
+					std::cout << "\nYou already picked up the key.\n";
+				}
 			}
 			else if (choice3 == 2)
 			{
@@ -159,9 +182,9 @@ void EventManager::Run()
 
 		case 4: //key unlock squence
 		{
-			std::cout << " The doors seem to be secured pretty tightly...almost as if it wasnt someone inside, but something outside keeping it in... \n";
-			std::cout << "Even so, you tug on the chains, it won't budge. \n";
-			std::cout << "It must be locked. \n";
+			std::cout << "\n The doors seem to be secured pretty tightly...almost as if it wasnt someone inside, but something outside keeping it in... \n";
+			std::cout << "Even so, you tug on the chains, it won't budge.\n \n";
+			std::cout << "It must be locked.\n \n";
 
 			bool hasKey = false;
 			for (const std::string& item : Inventory)
@@ -198,14 +221,15 @@ void EventManager::Run()
 
 		case 5: //clanking in the street
 		{
-			std::cout << "You walk down the street towards the clanking \n";
+			std::cout << "\nYou walk down the street towards the clanking \n";
 			std::cout << "You approach the the building that the metal sound is coming from and suddenly...\n";
 			std::cout << "the sounds stops.\n";
-			std::cout << "Your heart starts racing and the air starts to really feel thick. \n";
+			std::cout << "Your heart starts racing and the air starts to really feel thick.\n \n";
 
-			std::cout << "Do you: \n";
+			std::cout << "Do you: ";
 			e.AddChoice("Continue exploring");
 			e.AddChoice("Return to building");
+			e.AddChoice("Save Game");
 
 
 			e.DisplayChoices();
@@ -214,6 +238,11 @@ void EventManager::Run()
 
 			if (choice5 == 1) currentEvent = 1;
 			else if (choice5 == 2) currentEvent = 8;
+			else if (choice5 == 3)
+			{
+				saveAndstay();
+				currentEvent = 5;
+			}
 			else running = false;
 
 			
@@ -226,7 +255,7 @@ void EventManager::Run()
 			std::cout << "A broken vending machine hums quietly.  \n";
 			std::cout << "On the floor, in a pile of dust, you notice a small battery. \n\n";
 
-			std::cout << "Do you: \n";
+			std::cout << "Do you: ";
 			e.AddChoice("Pick up the battery");
 			e.AddChoice("Continue into the hallway");
 			e.AddChoice("Return to lobby");
@@ -238,9 +267,24 @@ void EventManager::Run()
 
 			if (choice6 == 1)
 			{
-				Inventory.push_back("Battery");
-				std::cout << "\n You picked up: Battery\n";
-				currentEvent = 6;
+				bool hasBattery = false;
+
+				for (const std::string& item : Inventory)
+				{
+					if (item == "Battery")
+					{
+						hasBattery = true;
+					}
+				}
+				if (!hasBattery)
+				{
+					Inventory.push_back("Battery");
+					std::cout << "\nYou picked up a battery\n";
+				}
+				else
+				{
+					std::cout << "\nYou already picked up the battery.\n";
+				}
 			}
 			else if (choice6 == 2)
 			{
@@ -265,7 +309,9 @@ void EventManager::Run()
 
 			e.AddChoice("Read the notebook");
 			e.AddChoice("Search the room");
-			e.AddChoice("Return to the entrance");
+			e.AddChoice("Return to the entrance\n");
+
+			e.AddChoice("Save Game");
 
 			e.DisplayChoices();
 
@@ -276,13 +322,33 @@ void EventManager::Run()
 			if (choice7 == 1) //read the notebook
 			{
 				std::cout << "\nThe notebook mentions strange experiments conducted in the basement.\n";
-				std::cout << "Most pages are torn out.\n";
+				std::cout << "Most pages are torn out.\n\n";
 				currentEvent = 7; // stay here
 			}
 			else if (choice7 == 2)
 			{
-				Inventory.push_back("Old Notebook");
-				std::cout << "\nYou picked up: Old Notebook\n";
+				bool hasNotebook = false;
+
+				for (const std::string& item : Inventory)
+				{
+					if (item == "Notebook")
+					{
+						hasNotebook = true;
+					}
+				}
+				if (!hasNotebook)
+				{
+					Inventory.push_back("Notebook");
+					std::cout << "\nYou picked up a Notebook\n";
+				}
+				else
+				{
+					std::cout << "\nYou already picked up the Notebook.\n";
+				}
+			}
+			else if (choice7 == 4)
+			{
+				saveAndstay();
 				currentEvent = 7;
 			}
 			else
@@ -311,7 +377,183 @@ void EventManager::Run()
 			else running = false;
 		}
 		break;
+		
+		case 9:
+		{
+			std::cout << "\nYou reach the end of the hallway. \n";
+			std::cout << "A heavy metal door blocks your path. \n";
+			std::cout << "A faded sign reads: BASEMENT ACCESS. \n \n";
+
+			bool hasBattery = false;
+			for (const std::string& item : Inventory)
+			{
+				if (item == "Battery")
+					hasBattery = true;
+			}
+			Event e;
+
+			if (hasBattery)
+			{
+				e.AddChoice("Use the battery to power your flashlight");
+			}
+				e.AddChoice("Return to the hallway");
+				e.AddChoice("Save Game");
+
+				e.DisplayChoices();
+
+				int choice9 = GetValidatedChoice(e.GetChoiceCount());
+
+				if (hasBattery && choice9 == 1)
+				{
+					bool hasID = false;
+
+					for (const std::string& item : Inventory)
+					{
+						if (item == "ID")
+						{
+							hasID = true;
+						}
+					}
+					if (!hasID)
+					{
+						Inventory.push_back("ID");
+						std::cout << "\nYou picked up a ID\n";
+					}
+					else
+					{
+						std::cout << "\nYou already picked up the ID.\n";
+					}
+				}
+				else if ((hasBattery && choice9 == 2) || (!hasBattery && choice9 == 1))
+				{
+					std::cout << "\nYou push hard against the door.\n";
+					std::cout << "The damaged lock snaps and the door swings open.\n";
+					currentEvent = 10;
+				}
+				else if ((hasBattery && choice9 == 3) || (!hasBattery && choice9 == 2))
+				{
+					SaveGame("save.txt");
+					currentEvent = 9;
+				}
+				else
+				{
+					running = false;
+				}
 			
+		}
+
+			break;
+
+		case 10:
+		{
+			std::cout << "\nYou desecend the stairs into the basement. \n";
+			std::cout << "Cold air wraps around you like a shroud. \n";
+			std::cout << "Footprints lead deeper into the darkness. \n \n";
+			Event e;
+
+			e.AddChoice("Follow the footprints");
+			e.AddChoice("Search the basement");
+			e.AddChoice("Retreat upstairs");
+			
+
+			e.DisplayChoices();
+
+			int choice10 = GetValidatedChoice(e.GetChoiceCount());
+
+			if (choice10 == 1)
+			{
+				currentEvent = 11;
+			}
+			else if (choice10 == 2)
+			{
+				std::cout << "\nYou find a torn ID badge.\n";
+				Inventory.push_back("Torn ID Badge");
+				currentEvent = 10;
+			}
+			else if (choice10 == 3)
+			{
+				currentEvent = 9;
+			}
+			else
+			{
+				SaveGame("save.txt");
+				currentEvent = 10;
+			}
+		}
+		
+
+
+		break;
+		case 11:
+		{
+			std::cout << "\n You follow the footprints to a dimly light storage room. \n";
+			std::cout << " A figure sits against the wall, breathing heavily. \n";
+			std::cout << "They look up at you with fear and relief. \n\n";
+
+			std::cout << "\Please...Help me,\ the person whispers. \n";
+			std::cout << "Their ID badge matches the torn one you found \n\n";
+
+			Event e;
+
+			e.AddChoice("Help the trapped researcher");
+			e.AddChoice("Ask what happened here");
+			e.AddChoice("Leave them and escape");
+			e.AddChoice("Save Game");
+
+			e.DisplayChoices();
+
+			int choice11 = GetValidatedChoice(e.GetChoiceCount());
+
+			if (choice11 == 1)
+			{
+				helpedResearcher = true;
+				currentEvent = 12; // Hero ending
+			}
+			else if (choice11 == 2)
+			{
+				std::cout << "\n\"The experiments... something went wrong...\"\n";
+				std::cout << "Their voice trembles.\n";
+				currentEvent = 11;
+			}
+			else if (choice11 == 3)
+			{
+				helpedResearcher = false;
+
+				currentEvent = 12; // Tragic ending
+			}
+			else
+			{
+				SaveGame("save.txt");
+				currentEvent = 11;
+			}
+
+		}
+			break;
+
+		case 12:
+		{
+			
+
+			if (helpedResearcher)
+			{
+				std::cout << "You help the researcher to their feet.\n";
+				std::cout << "Together, you escape the Holloway Building.\n";
+				std::cout << "The truth about the experiments will finally be known.\n\n";
+				std::cout << "           HERO ENDING\n";
+			}
+			else
+			{
+				std::cout << "You leave the basement alone.\n";
+				std::cout << "The researcher’s cries echo behind you as you flee.\n";
+				std::cout << "The mystery of the Holloway Building remains unsolved.\n\n";
+				std::cout << "           TRAGIC ENDING\n";
+			}
+
+			std::cout << "\nThank you for playing.\n";
+			running = false;
+		}
+		break;
+
 		default:
 			std::cout << "You leave the area. The mystery remains unsolved. \n";
 			break;
@@ -322,6 +564,105 @@ void EventManager::Run()
 
 	}
 	
+
+}
+
+void EventManager::SaveGame(const std::string& filename)
+{
+	std::ofstream out(filename);
+
+	if (!out.is_open())
+	{
+		std::cout << "Error saving game.\n";
+		return;
+	}
+
+	out << currentEvent << "\n";
+
+	// Write inventory size
+	out << Inventory.size() << "\n";
+
+	// Write each item
+	for (const std::string& item : Inventory)
+	{
+		out << item << "\n";
+	}
+
+	out.close();
+
+	std::cout << "Game saved successfully.\n";
+}
+
+bool EventManager::LoadGame(const std::string& filename)
+{
+	std::ifstream in(filename);
+
+	if (!in.is_open())
+	{
+		std::cout << "Save file not found..";
+		return false;
+	}
+	Inventory.clear();
+
+	std::string line;
+
+	if (!std::getline(in, line)) 
+	{
+		std::cout << "Save file corrupted.\n";
+		return false;
+	}
+
+	try
+	{
+		currentEvent = std::stoi(line);
+	}
+	catch (...)
+	{
+		std::cout << "Save file corrupted.\n";
+		return false;
+	}
+
+	// Read inventory count
+	if (!std::getline(in, line))
+	{
+		std::cout << "Save file corrupted.\n";
+		return false;
+	}
+
+	int count = 0;
+	try
+	{
+		count = std::stoi(line);
+	}
+	catch (...)
+	{
+		std::cout << "Save file corrupted.\n";
+		return false;
+	}
+
+	// Read each inventory item
+	for (int i = 0; i < count; i++)
+	{
+		if (!std::getline(in, line))
+		{
+			std::cout << "Save file corrupted.\n";
+			return false;
+		}
+
+		Inventory.push_back(line);
+	}
+
+	std::cout << "Game loaded successfully.\n";
+	return true;
+}
+
+
+
+
+void EventManager::saveAndstay()
+{
+	SaveGame("Game.txt");
+	std::cout << "\n Game successfully saved. \n";
 
 }
 

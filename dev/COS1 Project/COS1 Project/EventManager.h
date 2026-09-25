@@ -2,6 +2,7 @@
 #include "Event.h"
 #include <vector>
 
+
 class EventManager
 {
 
@@ -9,11 +10,17 @@ private:
 	
 	int currentEvent;
 	std::vector<std::string> Inventory;
+	bool helpedResearcher = false;
 
 public:
 	EventManager();
 	void Run();
-	int GetValidatedChoice(int maxChoice)
+	int GetValidatedChoice(int maxChoice);
+	void SaveGame(const std::string& fileName);
+	bool LoadGame(const std::string& fileName);
+	void saveAndstay();
+
+
 
 };
 
