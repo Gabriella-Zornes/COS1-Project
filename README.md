@@ -46,4 +46,4 @@ Now, I finally have the input validation in its own function to call instead of 
 
 ### Week 4
 
-My final stand up...
+This week I finished the core structure of my text‑based adventure game, added new events, and built a complete ending sequence. I also fixed my input system so the game runs smoothly from start to finish. I polished my event logic, cleaned up the menu system, and added Save/Load and Resume Game features. The game now supports saving anywhere and loading directly back into the story. My biggest challenge was debugging input issues caused by mixing cin >> with getline(). Switching fully to getline + stoi solved the problem and made the whole project more stable. I also had to redesign my LoadGame function to avoid .ignore() and .clear(). Using one input method, keeping code organized, and understanding how data flows through the program made everything easier. I also gained confidence in debugging and building connected systems. As I continue this project, I will expand the story with more branching paths, add additional endings, and possibly introduce puzzles or sound effects. With the core engine finished, there’s a lot of room to grow.
