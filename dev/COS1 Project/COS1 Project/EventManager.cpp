@@ -147,9 +147,24 @@ void EventManager::Run()
 
 			if (choice3 == 1)
 			{
-				Inventory.push_back("Small Metal Key");
-				std::cout << "\n You picked up: Small Matel Key\n";
-				currentEvent = 3;
+				bool hasKey = false;
+
+				for (const std::string& item : Inventory)
+				{
+					if (item == "Small Metal Key")
+					{
+						hasKey = true;
+					}
+				}
+				if (!hasKey)
+				{
+					Inventory.push_back("Small Metal Key");
+					std::cout << "\nYou picked up a Small Metal Key\n";
+				}
+				else
+				{
+					std::cout << "\nYou already picked up the key.\n";
+				}
 			}
 			else if (choice3 == 2)
 			{
@@ -252,9 +267,24 @@ void EventManager::Run()
 
 			if (choice6 == 1)
 			{
-				Inventory.push_back("Battery");
-				std::cout << "\n You picked up: Battery\n";
-				currentEvent = 6;
+				bool hasBattery = false;
+
+				for (const std::string& item : Inventory)
+				{
+					if (item == "Battery")
+					{
+						hasBattery = true;
+					}
+				}
+				if (!hasBattery)
+				{
+					Inventory.push_back("Battery");
+					std::cout << "\nYou picked up a battery\n";
+				}
+				else
+				{
+					std::cout << "\nYou already picked up the battery.\n";
+				}
 			}
 			else if (choice6 == 2)
 			{
@@ -297,9 +327,24 @@ void EventManager::Run()
 			}
 			else if (choice7 == 2)
 			{
-				Inventory.push_back("Old Notebook");
-				std::cout << "\nYou picked up: Old Notebook\n";
-				currentEvent = 7;
+				bool hasNotebook = false;
+
+				for (const std::string& item : Inventory)
+				{
+					if (item == "Notebook")
+					{
+						hasNotebook = true;
+					}
+				}
+				if (!hasNotebook)
+				{
+					Inventory.push_back("Notebook");
+					std::cout << "\nYou picked up a Notebook\n";
+				}
+				else
+				{
+					std::cout << "\nYou already picked up the Notebook.\n";
+				}
 			}
 			else if (choice7 == 4)
 			{
@@ -360,9 +405,24 @@ void EventManager::Run()
 
 				if (hasBattery && choice9 == 1)
 				{
-					std::cout << "\nYou insert the battery. The flashlight flickers to life.\n";
-					Inventory.push_back("Working Flashlight");
-					currentEvent = 9;
+					bool hasID = false;
+
+					for (const std::string& item : Inventory)
+					{
+						if (item == "ID")
+						{
+							hasID = true;
+						}
+					}
+					if (!hasID)
+					{
+						Inventory.push_back("ID");
+						std::cout << "\nYou picked up a ID\n";
+					}
+					else
+					{
+						std::cout << "\nYou already picked up the ID.\n";
+					}
 				}
 				else if ((hasBattery && choice9 == 2) || (!hasBattery && choice9 == 1))
 				{
