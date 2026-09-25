@@ -10,6 +10,7 @@ private:
 	
 	int currentEvent;
 	std::vector<std::string> Inventory;
+	bool helpedResearcher = false;
 
 public:
 	EventManager();

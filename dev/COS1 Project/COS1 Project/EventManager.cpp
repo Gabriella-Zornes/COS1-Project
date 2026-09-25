@@ -446,6 +446,7 @@ void EventManager::Run()
 
 			if (choice11 == 1)
 			{
+				helpedResearcher = true;
 				currentEvent = 12; // Hero ending
 			}
 			else if (choice11 == 2)
@@ -456,6 +457,8 @@ void EventManager::Run()
 			}
 			else if (choice11 == 3)
 			{
+				helpedResearcher = false;
+
 				currentEvent = 12; // Tragic ending
 			}
 			else
@@ -469,15 +472,9 @@ void EventManager::Run()
 
 		case 12:
 		{
-			bool helped = false;
+			
 
-			for (const std::string& item : Inventory)
-			{
-				if (item == "Torn ID Badge")
-					helped = true;
-			}
-
-			if (helped)
+			if (helpedResearcher)
 			{
 				std::cout << "You help the researcher to their feet.\n";
 				std::cout << "Together, you escape the Holloway Building.\n";
